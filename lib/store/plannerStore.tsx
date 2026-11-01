@@ -373,7 +373,9 @@ export function PlannerProvider({
   const [state, dispatch] = useReducer(plannerReducer, {
     events: initialState?.events ?? [],
     activeEventId: initialState?.activeEventId ?? null,
-    hydrated: initialState?.hydrated ?? false,
+    hydrated:
+      initialState?.hydrated ??
+      Boolean(initialState?.events && initialState.events.length > 0),
   })
 
   // Hydrate from localStorage on client mount

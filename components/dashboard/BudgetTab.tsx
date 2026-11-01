@@ -218,6 +218,7 @@ export function BudgetTab(): React.ReactElement {
             segments={donutSegments}
             size={220}
             strokeWidth={32}
+            title="Budget distribution data table"
             centerLabel="Allocated"
             centerValue={formatMoney(totalAllocated, profile.currency)}
           />
@@ -342,7 +343,7 @@ export function BudgetTab(): React.ReactElement {
                           }}
                           className="font-semibold text-[var(--text-primary)] hover:text-[var(--color-primary)] hover:underline transition-colors"
                           title="Click to edit and rebalance"
-                          aria-label={`Allocated ${formatMoney(line.allocated, profile.currency)}. Click to edit.`}
+                          aria-label={`Allocated ${formatMoney(line.allocated, profile.currency)} for ${line.label}. Click to edit.`}
                         >
                           {formatMoney(line.allocated, profile.currency)}
                         </button>

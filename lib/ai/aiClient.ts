@@ -127,7 +127,10 @@ export async function callAi<T = unknown>(
     })
 
     if (!res.ok) {
-      // Server returned error (e.g. 429, 500) -> fall back locally
+      if (res.status === 429) {
+        throw new Error('HTTP 429: Rate limit exceeded')
+      }
+      // Server returned other error (e.g. 500) -> fall back locally
       const fallbackData = getLocalFallbackData(request) as T
       return {
         ok: true,
@@ -138,7 +141,10 @@ export async function callAi<T = unknown>(
 
     const envelope = (await res.json()) as AiEnvelope<T>
     return envelope
-  } catch {
+  } catch (err: unknown) {
+    if (err instanceof Error && err.message.includes('429')) {
+      throw err
+    }
     // Network offline or fetch abort -> fallback locally
     const fallbackData = getLocalFallbackData(request) as T
     return {

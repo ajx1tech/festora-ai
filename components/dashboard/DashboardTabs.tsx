@@ -118,6 +118,7 @@ function DashboardTabsInner(): React.ReactElement {
                     ? 'bg-[var(--color-primary)] text-[var(--color-primary-fg)] shadow-xs'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)]'
                 }`}
+                onClick={() => handleTabChange(tab.id)}
               >
                 <Icon
                   className={`w-4 h-4 shrink-0 ${

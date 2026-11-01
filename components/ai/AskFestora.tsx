@@ -59,7 +59,9 @@ export function AskFestora(): React.ReactElement {
 
   // Scroll to bottom on message updates
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (typeof messagesEndRef.current?.scrollIntoView === 'function') {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [messages, loading])
 
   // Countdown for 429 Retry-After

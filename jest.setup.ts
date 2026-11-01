@@ -39,6 +39,9 @@ if (typeof window !== 'undefined') {
       return []
     }
   } as unknown as typeof IntersectionObserver
+
+  // Mock scrollIntoView
+  window.HTMLElement.prototype.scrollIntoView = jest.fn()
 }
 
 // Global mock for Next.js navigation in App Router tests
