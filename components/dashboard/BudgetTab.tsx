@@ -14,7 +14,6 @@ import { formatMoney } from '@/lib/utils/format'
 import { generateId } from '@/lib/utils/ids'
 import type { BudgetCategoryId } from '@/lib/domain/schemas'
 import {
-  Coins,
   Lock,
   Unlock,
   AlertTriangle,
@@ -93,6 +92,7 @@ export function BudgetTab(): React.ReactElement {
 
   // Donut chart items
   const donutSegments = budget.map((b) => ({
+    id: b.id,
     label: b.label,
     value: b.allocated,
     color: CATEGORY_COLORS[b.id] ?? '#6366f1',
@@ -218,8 +218,8 @@ export function BudgetTab(): React.ReactElement {
             segments={donutSegments}
             size={220}
             strokeWidth={32}
-            centerLabel={formatMoney(totalAllocated, profile.currency)}
-            centerSublabel="Allocated"
+            centerLabel="Allocated"
+            centerValue={formatMoney(totalAllocated, profile.currency)}
           />
         </Card>
 
@@ -436,9 +436,9 @@ export function BudgetTab(): React.ReactElement {
               min={10}
               max={1500}
               step={5}
-              value={scenarioGuests}
-              onChange={(val) => setScenarioGuests(val)}
-              label="Simulated guests"
+              value={[scenarioGuests]}
+              onValueChange={(val: number[]) => setScenarioGuests(val[0] ?? 10)}
+              ariaLabel="Simulated guests"
             />
           </div>
 
@@ -457,9 +457,9 @@ export function BudgetTab(): React.ReactElement {
               min={10000}
               max={10000000}
               step={25000}
-              value={scenarioBudget}
-              onChange={(val) => setScenarioBudget(val)}
-              label="Simulated budget"
+              value={[scenarioBudget]}
+              onValueChange={(val: number[]) => setScenarioBudget(val[0] ?? 500000)}
+              ariaLabel="Simulated budget"
             />
           </div>
         </div>

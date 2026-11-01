@@ -2,6 +2,7 @@
 
 import { ProgressRing } from '@/components/ui/ProgressRing'
 import { SourceBadge } from '@/components/ui/SourceBadge'
+import { SampleDemo } from '@/components/dashboard/SampleDemo'
 import { usePlannerStore } from '@/lib/store/plannerStore'
 import {
   ArrowRight,
@@ -98,6 +99,11 @@ export function Hero(): React.ReactElement {
                 />
                 Offline resilient
               </span>
+            </div>
+
+            {/* 1-Click Sample Celebration Evaluator */}
+            <div className="mt-8 pt-6 border-t border-[var(--border-subtle)]">
+              <SampleDemo />
             </div>
           </div>
 

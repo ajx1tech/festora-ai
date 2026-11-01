@@ -12,7 +12,6 @@ import { committedSpend } from '@/lib/engines/vendorEngine'
 import { formatDate, formatMoney } from '@/lib/utils/format'
 import { buildICS } from '@/lib/engines/icsExport'
 import {
-  Calendar,
   Clock,
   Coins,
   MapPin,

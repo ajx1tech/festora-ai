@@ -2,6 +2,8 @@
 
 import { ProgressRing } from '@/components/ui/ProgressRing'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { AiStatusBadge } from '@/components/ai/AiStatusBadge'
+import { ExportMenu } from '@/components/dashboard/ExportMenu'
 import {
   useActivePlan,
   usePlannerStore,
@@ -88,6 +90,12 @@ export default function PlannerLayout({
 
           {/* Controls: Readiness Mini-Ring, ThemeToggle, New Event Button */}
           <div className="flex items-center gap-3">
+            {/* AI Health Status Badge */}
+            <AiStatusBadge />
+
+            {/* Export Menu */}
+            {activePlan && <ExportMenu />}
+
             {/* Readiness Mini-Ring */}
             {activePlan && readiness && (
               <div

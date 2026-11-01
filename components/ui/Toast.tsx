@@ -101,3 +101,51 @@ export function ToastProvider({
     </ToastContext.Provider>
   )
 }
+
+export interface ToastProps {
+  message: string
+  type?: 'success' | 'error' | 'info'
+  onClose: () => void
+  duration?: number
+}
+
+/**
+ * Standalone accessible toast component.
+ *
+ * @param props - Toast configuration.
+ * @returns Toast notification element.
+ */
+export function Toast({
+  message,
+  type = 'info',
+  onClose,
+}: ToastProps): React.ReactElement {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="fixed bottom-4 right-4 z-50 pointer-events-auto flex items-center justify-between gap-3 px-4 py-3 bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-strong)] rounded-xl shadow-lg animate-fade-up motion-reduce:animate-none"
+    >
+      <div className="flex items-center gap-2.5">
+        {type === 'success' && (
+          <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+        )}
+        {type === 'error' && (
+          <XCircle className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0" />
+        )}
+        {type === 'info' && (
+          <Info className="w-5 h-5 text-[var(--color-primary)] shrink-0" />
+        )}
+        <span className="text-sm font-medium">{message}</span>
+      </div>
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Dismiss notification"
+        className="p-1 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] tap-target cursor-pointer"
+      >
+        <X className="w-4 h-4" />
+      </button>
+    </div>
+  )
+}
