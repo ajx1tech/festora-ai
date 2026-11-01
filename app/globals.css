@@ -1,0 +1,270 @@
+@import 'tailwindcss';
+
+:root {
+  /* Design Tokens - Light Theme (Warm Ivory Base) */
+  --bg-primary: #faf8f5;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f5f1e8;
+  --bg-surface-subtle: #f0eae1;
+
+  /* Typography & Ink: Deep Ink */
+  --text-primary: #1a162b;
+  --text-secondary: #4a4553;
+  --text-muted: #666170;
+
+  /* Brand Core: Plum Primary & Coral Accent */
+  --color-primary: #581c3f;
+  --color-primary-hover: #481633;
+  --color-primary-fg: #ffffff;
+
+  --color-accent: #9e2a18;
+  --color-accent-hover: #832213;
+  --color-accent-fg: #ffffff;
+
+  /* Borders & Dividers */
+  --border-subtle: #e8e2d8;
+  --border-strong: #d4ccc0;
+
+  /* Focus Ring */
+  --focus-ring: #581c3f;
+
+  /* Radius Scale - 16px Base Radius Scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* Soft Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(26, 22, 43, 0.05);
+  --shadow-md:
+    0 4px 16px -2px rgba(26, 22, 43, 0.06),
+    0 2px 6px -1px rgba(26, 22, 43, 0.04);
+  --shadow-lg:
+    0 10px 25px -3px rgba(26, 22, 43, 0.08),
+    0 4px 10px -2px rgba(26, 22, 43, 0.04);
+
+  /* Font Families */
+  --font-family-display: var(--font-display), 'Fraunces', Georgia, serif;
+  --font-family-body:
+    var(--font-body), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Event Theme Overrides (Light): Wedding (rose-gold) */
+[data-event='wedding'] {
+  --color-primary: #7e2548;
+  --color-primary-hover: #671e3b;
+  --color-primary-fg: #ffffff;
+  --color-accent: #7a5000;
+  --color-accent-hover: #614000;
+  --color-accent-fg: #ffffff;
+  --focus-ring: #7e2548;
+}
+
+/* Event Theme Overrides (Light): Birthday (violet-amber) */
+[data-event='birthday'] {
+  --color-primary: #582484;
+  --color-primary-hover: #471d6b;
+  --color-primary-fg: #ffffff;
+  --color-accent: #8c4e00;
+  --color-accent-hover: #6e3d00;
+  --color-accent-fg: #ffffff;
+  --focus-ring: #582484;
+}
+
+/* Event Theme Overrides (Light): Community (teal-orange) */
+[data-event='community'] {
+  --color-primary: #0d5959;
+  --color-primary-hover: #094343;
+  --color-primary-fg: #ffffff;
+  --color-accent: #a83b00;
+  --color-accent-hover: #862f00;
+  --color-accent-fg: #ffffff;
+  --focus-ring: #0d5959;
+}
+
+/* Dark Theme Variables */
+[data-theme='dark'] {
+  --bg-primary: #141217;
+  --bg-surface: #1e1b24;
+  --bg-surface-elevated: #282430;
+  --bg-surface-subtle: #211d29;
+
+  --text-primary: #faf8fc;
+  --text-secondary: #b8b2c4;
+  --text-muted: #958fa1;
+
+  --color-primary: #e085be;
+  --color-primary-hover: #ea9dcb;
+  --color-primary-fg: #2a0a1f;
+
+  --color-accent: #ff8a7a;
+  --color-accent-hover: #ffa294;
+  --color-accent-fg: #2e0a05;
+
+  --border-subtle: #2e2838;
+  --border-strong: #413a4f;
+
+  --focus-ring: #e085be;
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md:
+    0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg:
+    0 10px 25px -3px rgba(0, 0, 0, 0.5), 0 4px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Event Theme Overrides (Dark) */
+[data-theme='dark'][data-event='wedding'],
+[data-theme='dark'] [data-event='wedding'] {
+  --color-primary: #f08cb5;
+  --color-primary-hover: #f5a5c6;
+  --color-primary-fg: #260514;
+  --color-accent: #ecc276;
+  --color-accent-hover: #f2d294;
+  --color-accent-fg: #2e2003;
+  --focus-ring: #f08cb5;
+}
+
+[data-theme='dark'][data-event='birthday'],
+[data-theme='dark'] [data-event='birthday'] {
+  --color-primary: #b78ff5;
+  --color-primary-hover: #c9a7f8;
+  --color-primary-fg: #1a0830;
+  --color-accent: #fdb654;
+  --color-accent-hover: #fec677;
+  --color-accent-fg: #301b00;
+  --focus-ring: #b78ff5;
+}
+
+[data-theme='dark'][data-event='community'],
+[data-theme='dark'] [data-event='community'] {
+  --color-primary: #45bfb8;
+  --color-primary-hover: #63cec8;
+  --color-primary-fg: #032422;
+  --color-accent: #ff8e4d;
+  --color-accent-hover: #ffa570;
+  --color-accent-fg: #331300;
+  --focus-ring: #45bfb8;
+}
+
+/* Media Query: Prefers Color Scheme Dark */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg-primary: #141217;
+    --bg-surface: #1e1b24;
+    --bg-surface-elevated: #282430;
+    --bg-surface-subtle: #211d29;
+
+    --text-primary: #faf8fc;
+    --text-secondary: #b8b2c4;
+    --text-muted: #958fa1;
+
+    --color-primary: #e085be;
+    --color-primary-hover: #ea9dcb;
+    --color-primary-fg: #2a0a1f;
+
+    --color-accent: #ff8a7a;
+    --color-accent-hover: #ffa294;
+    --color-accent-fg: #2e0a05;
+
+    --border-subtle: #2e2838;
+    --border-strong: #413a4f;
+
+    --focus-ring: #e085be;
+
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md:
+      0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg:
+      0 10px 25px -3px rgba(0, 0, 0, 0.5), 0 4px 10px -2px rgba(0, 0, 0, 0.3);
+  }
+
+  :root:not([data-theme='light'])[data-event='wedding'],
+  :root:not([data-theme='light']) [data-event='wedding'] {
+    --color-primary: #f08cb5;
+    --color-primary-hover: #f5a5c6;
+    --color-primary-fg: #260514;
+    --color-accent: #ecc276;
+    --color-accent-hover: #f2d294;
+    --color-accent-fg: #2e2003;
+    --focus-ring: #f08cb5;
+  }
+
+  :root:not([data-theme='light'])[data-event='birthday'],
+  :root:not([data-theme='light']) [data-event='birthday'] {
+    --color-primary: #b78ff5;
+    --color-primary-hover: #c9a7f8;
+    --color-primary-fg: #1a0830;
+    --color-accent: #fdb654;
+    --color-accent-hover: #fec677;
+    --color-accent-fg: #301b00;
+    --focus-ring: #b78ff5;
+  }
+
+  :root:not([data-theme='light'])[data-event='community'],
+  :root:not([data-theme='light']) [data-event='community'] {
+    --color-primary: #45bfb8;
+    --color-primary-hover: #63cec8;
+    --color-primary-fg: #032422;
+    --color-accent: #ff8e4d;
+    --color-accent-hover: #ffa570;
+    --color-accent-fg: #331300;
+    --focus-ring: #45bfb8;
+  }
+}
+
+/* Base Body Styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family-body);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Accessible Focus-Visible Ring */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print Stylesheet */
+@media print {
+  nav,
+  aside,
+  header,
+  footer,
+  [role='navigation'],
+  [data-print-hide],
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+
+  a {
+    text-decoration: underline !important;
+    color: #000000 !important;
+  }
+}
