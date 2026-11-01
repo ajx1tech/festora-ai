@@ -60,6 +60,10 @@ export type PlannerAction =
   | { type: 'TOGGLE_TASK'; payload: { taskId: string } }
   | { type: 'ADD_TASK'; payload: { task: Task } }
   | {
+      type: 'UPDATE_TASK'
+      payload: { taskId: string; updates: Partial<Task> }
+    }
+  | {
       type: 'UPDATE_BUDGET_LINE'
       payload: { lineId: string; updates: Partial<BudgetLine> }
     }
@@ -160,6 +164,20 @@ export function plannerReducer(
           ...plan,
           tasks: [...plan.tasks, action.payload.task],
         }
+      })
+      return { ...state, events: nextEvents }
+    }
+
+    case 'UPDATE_TASK': {
+      if (!state.activeEventId) return state
+      const nextEvents = state.events.map((plan) => {
+        if (plan.id !== state.activeEventId) return plan
+        const nextTasks = plan.tasks.map((task) =>
+          task.id === action.payload.taskId
+            ? { ...task, ...action.payload.updates }
+            : task
+        )
+        return { ...plan, tasks: nextTasks }
       })
       return { ...state, events: nextEvents }
     }
@@ -323,6 +341,7 @@ export interface PlannerContextValue {
   updateProfile: (updates: Partial<EventProfile>) => void
   toggleTask: (taskId: string) => void
   addTask: (task: Task) => void
+  updateTask: (taskId: string, updates: Partial<Task>) => void
   updateBudgetLine: (lineId: string, updates: Partial<BudgetLine>) => void
   lockBudgetLine: (lineId: string, locked: boolean) => void
   addExpense: (expense: Expense) => void
@@ -444,6 +463,13 @@ export function PlannerProvider({
     dispatch({ type: 'ADD_TASK', payload: { task } })
   }, [])
 
+  const updateTask = useCallback(
+    (taskId: string, updates: Partial<Task>): void => {
+      dispatch({ type: 'UPDATE_TASK', payload: { taskId, updates } })
+    },
+    []
+  )
+
   const updateBudgetLine = useCallback(
     (lineId: string, updates: Partial<BudgetLine>): void => {
       dispatch({ type: 'UPDATE_BUDGET_LINE', payload: { lineId, updates } })
@@ -495,6 +521,7 @@ export function PlannerProvider({
       updateProfile,
       toggleTask,
       addTask,
+      updateTask,
       updateBudgetLine,
       lockBudgetLine,
       addExpense,
@@ -512,6 +539,7 @@ export function PlannerProvider({
       updateProfile,
       toggleTask,
       addTask,
+      updateTask,
       updateBudgetLine,
       lockBudgetLine,
       addExpense,
