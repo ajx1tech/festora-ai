@@ -226,6 +226,80 @@ body {
   min-height: 100vh;
 }
 
+/* Typography Helpers */
+.font-display {
+  font-family: var(--font-family-display);
+}
+
+.font-body {
+  font-family: var(--font-family-body);
+}
+
+/* Accessible Minimum Tap Target: 44px x 44px */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Subtle Pure CSS Gradient Mesh Background */
+.mesh-gradient-bg {
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(at 15% 15%, rgba(88, 28, 63, 0.04) 0px, transparent 50%),
+    radial-gradient(at 85% 20%, rgba(158, 42, 24, 0.03) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(122, 80, 0, 0.03) 0px, transparent 50%);
+}
+
+[data-theme='dark'] .mesh-gradient-bg,
+:root:not([data-theme='light']) .mesh-gradient-bg {
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(at 15% 15%, rgba(224, 133, 190, 0.07) 0px, transparent 55%),
+    radial-gradient(at 85% 20%, rgba(255, 138, 122, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(236, 194, 118, 0.05) 0px, transparent 55%);
+}
+
+/* Smooth Fade-Up Animation */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pure CSS Confetti Burst Animation */
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg) scale(0.6);
+  }
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  animation: confetti-fall 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 /* Accessible Focus-Visible Ring */
 :focus-visible {
   outline: 2px solid var(--focus-ring);

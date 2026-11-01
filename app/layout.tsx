@@ -1,3 +1,5 @@
+import { ToastProvider } from '@/components/ui/Toast'
+import { PlannerProvider } from '@/lib/store/plannerStore'
 import type { Metadata, Viewport } from 'next'
 import { Fraunces, Inter } from 'next/font/google'
 import React from 'react'
@@ -39,7 +41,7 @@ interface RootLayoutProps {
 }
 
 /**
- * Root application layout establishing design tokens, typography, and accessibility landmarks.
+ * Root application layout establishing design tokens, typography, state store, and accessibility landmarks.
  *
  * @param props - Layout component properties containing child nodes.
  * @returns The root HTML document element.
@@ -56,7 +58,9 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {children}
+        <PlannerProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </PlannerProvider>
       </body>
     </html>
   )

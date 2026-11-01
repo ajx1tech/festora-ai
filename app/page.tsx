@@ -1,25 +1,29 @@
+import { EventCards } from '@/components/landing/EventCards'
+import { FeatureGrid } from '@/components/landing/FeatureGrid'
+import { Footer } from '@/components/landing/Footer'
+import { Header } from '@/components/landing/Header'
+import { Hero } from '@/components/landing/Hero'
+import { HowItWorks } from '@/components/landing/HowItWorks'
+import { TrustStrip } from '@/components/landing/TrustStrip'
 import React from 'react'
 
 /**
- * Root landing page placeholder for Festora AI.
+ * Festora AI Landing Page showcasing event capabilities, deterministic planning, and grounded AI features.
  *
- * @returns The rendered main view placeholder.
+ * @returns Complete landing page view.
  */
 export default function Home(): React.ReactElement {
   return (
-    <main
-      id="main-content"
-      className="flex min-h-screen flex-col items-center justify-center p-6 text-center"
-    >
-      <div className="max-w-xl rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-10 shadow-[var(--shadow-md)]">
-        <h1 className="font-[var(--font-family-display)] text-4xl font-bold tracking-tight text-[var(--color-primary)]">
-          Festora AI
-        </h1>
-        <p className="mt-4 text-lg text-[var(--text-secondary)]">
-          GenAI-powered planning assistant for weddings, birthdays, and
-          community events.
-        </p>
-      </div>
-    </main>
+    <div className="flex flex-col min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      <Header />
+      <main id="main-content" className="grow">
+        <Hero />
+        <EventCards />
+        <HowItWorks />
+        <FeatureGrid />
+        <TrustStrip />
+      </main>
+      <Footer />
+    </div>
   )
 }
